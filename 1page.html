@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-section">
+        <div class="menu-icon" id="menuIcon">☰</div>
+        <img src="logo.jpg" alt="logo" />
+        <div class="title">Digital</div>
+      </div>
+
+      <div class="user-controls">
+        <div class="language-toggle" id="langToggle">
+          <span id="lang-en" class="active">Eng</span>
+          <span id="lang-myan">Myan</span>
+        </div>
+        <div class="user-menu">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+            alt="user"
+            width="30"
+          />
+          <span>user</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="card-grid">
+      <div class="card card-draw" onclick="drawSign()">
+        <div class="draw-icon">✍️</div>
+        <h2 data-key="drawSign">Draw Sign</h2>
+        <span data-key="createSignature">Create your signature</span>
+      </div>
+      <div class="card card-upload" onclick="uploadFile()">
+        <div class="draw-icon">📤</div>
+        <h2 data-key="uploadFile">Upload File</h2>
+        <span data-key="uploadPdf">Upload contract PDF</span>
+      </div>
+      <div class="card card-check" onclick="checkContract()">
+        <div class="draw-icon">📄</div>
+        <h2 data-key="checkContract">Check Contract</h2>
+        <span data-key="contractsWaiting">Contracts waiting to sign</span>
+      </div>
+      <div class="card card-history" onclick="viewHistory()">
+        <div class="draw-icon">📜</div>
+        <h2 data-key="viewHistory">View History</h2>
+        <span data-key="allRecords">All signed records</span>
+      </div>
+    </section>
+    <!-- Drawing Pad Modal -->
+    <div id="drawPadModal" class="draw-pad-modal">
+      <div class="draw-pad-content">
+        <span class="close-icon" id="closePadX">&times;</span
+        ><!-- X Button-->
+        <canvas id="drawCanvas" width="400" height="300"></canvas>
+        <div class="button-row">
+          <button id="clearCanvasBtn">Clear</button>
+          <button id="savePadBtn">Save</button>
+        </div>
+      </div>
+    </div>
+    <section id="signaturePreviewSection" style="display: none">
+      <div class="signature-card">
+        <h2>Your Signature</h2>
+        <p id="userNameDisplay">Name: Yin Myo Htet</p>
+        <img id="signatureImage" src="" alt="Your Signature" />
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
