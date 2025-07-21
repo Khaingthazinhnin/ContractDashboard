@@ -113,7 +113,7 @@ header {
 /* Mobile မှာ 1 Column */
 @media (max-width: 480px) {
   .card-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:  repeat(2, 1fr);
   }
 }
 
@@ -127,7 +127,7 @@ header {
 /* Desktop မှာ 3 Column */
 @media (min-width: 769px) {
   .card-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
