@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View History</title>
+    <link rel="stylesheet" href="history.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>History</h1>
+        <span class="total-records">8 Total records</span>
+      </div>
+
+      <div class="controls">
+        <div class="left-controls">
+          <div class="sort-by-wrapper">
+            <span class="sort-label">Sort By:</span>
+            <div class="dropdown" id="sortDropdown">
+              <button class="dropdown-button" data-value="start_date">
+                Start date <i class="fas fa-chevron-down dropdown-arrow"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="#" data-value="start_date">Start date</a>
+                <a href="#" data-value="document_name">Document Name</a>
+                <a href="#" data-value="create_by">Create By</a>
+                <a href="#" data-value="work_type">Work Type</a>
+                <a href="#" data-value="status">Status</a>
+              </div>
+            </div>
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="Search" id="searchInput" />
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Document Name</th>
+              <th>Create By</th>
+              <th>Work type</th>
+              <th>Start date</th>
+              <th>Status</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <button id="homeButton">Home</button>
+    </div>
+
+    <script src="history.js"></script>
+  </body>
+</html>

@@ -1,0 +1,369 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(to bottom right, #d0eaff, #f2f8ff);
+  margin: 0;
+  padding: 20px; /* Reduced padding for smaller screens, responsive */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.12); /* Subtle shadow */
+  padding: 20px; /* Consistent padding inside the container, responsive */
+  width: 100%; /* Use 100% width to be responsive */
+  max-width: 1200px; /* Max width for desktop views */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Adjusted margin-bottom */
+  padding-bottom: 12px; /* Adjusted padding-bottom */
+  border-bottom: 1px solid #e0e6ed; /* Light divider line */
+  flex-wrap: wrap; /* Allow header items to wrap on smaller screens */
+  gap: 10px; /* Gap between header items */
+}
+
+.header h1 {
+  font-size: 18px; /* Slightly smaller to match image */
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 600; /* Semi-bold */
+}
+
+.header .total-records {
+  margin-left: 0; /* Remove fixed margin-left, will be handled by gap/flex-wrap */
+  font-size: 13px;
+  color: #6a7c8f;
+  background-color: #eef2f6; /* Lighter background */
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-start; /* Align items to the start */
+  align-items: center;
+  margin-bottom: 20px; /* Consistent margin */
+  flex-wrap: wrap; /* Allow items to wrap for responsiveness */
+  gap: 12px; /* Gap for items within controls */
+}
+
+.left-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Gap between sort group and search bar */
+  flex-wrap: wrap; /* Allow wrapping for small screens (sort and search) */
+}
+
+.sort-by-wrapper {
+  /* Wrapper for "Sort By:" label and dropdown */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Gap between "Sort By:" label and the button */
+  position: relative; /* For dropdown positioning */
+  z-index: 10; /* Ensure dropdown is above other elements */
+}
+
+.sort-label {
+  /* Style for "Sort By:" text */
+  font-size: 14px;
+  color: #5d7083;
+  font-weight: 500;
+}
+
+.dropdown-button {
+  background-color: #ffffff;
+  border: 1px solid #dcdfe6; /* Light grey border */
+  border-radius: 4px; /* Match image's less rounded corners */
+  padding: 7px 11px; /* Adjusted padding for a snugger fit */
+  font-size: 14px;
+  color: #334e68;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Slightly smaller gap between text and icon */
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.dropdown-button:hover {
+  background-color: #fcfcfc; /* Very subtle hover background */
+  border-color: #c9d2de;
+}
+
+.dropdown-button i {
+  font-size: 12px; /* Smaller icon size */
+  color: #8c9cb1; /* Muted icon color */
+}
+
+.dropdown-button .dropdown-arrow {
+  margin-left: 4px; /* Ensure consistent spacing */
+  transition: transform 0.2s ease;
+}
+
+.dropdown.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Content Styling */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 150px; /* Adjusted width */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Lighter shadow for dropdown */
+  z-index: 100; /* Ensure it's on top */
+  border-radius: 4px;
+  top: calc(100% + 8px); /* More space from button */
+  left: 0; /* Align with the start of the "Sort By" label */
+  border: 1px solid #e0e6ed;
+  overflow: hidden; /* For rounded corners on first/last item */
+}
+
+.dropdown-content a {
+  color: #334e68;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.1s ease;
+}
+.dropdown-content a:hover {
+  background-color: #f7f9fc;
+}
+
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+.search-bar {
+  position: relative;
+  flex-grow: 1; /* Allow search bar to grow */
+  max-width: 280px; /* Limit max width for desktop */
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 7px 12px 7px 38px; /* Adjusted padding to match button height and icon */
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #334e68;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar input::placeholder {
+  color: #aebacd; /* Lighter placeholder as in image */
+}
+
+.search-bar input:focus {
+  border-color: #90a5bb;
+  box-shadow: 0 0 0 2px rgba(144, 165, 187, 0.2);
+}
+
+.search-bar i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aebacd;
+  font-size: 14px;
+}
+
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling for tables on small screens */
+  max-height: 400px; /* Fixed height for vertical scrolling */
+  overflow-y: auto; /* Enable vertical scrolling when content exceeds max-height */
+  border: 1px solid #ebf0f5; /* Add a border around the table container */
+  border-radius: 8px; /* Match container border-radius */
+}
+
+table {
+  width: 100%;
+  min-width: 700px; /* Minimum width to prevent excessive squishing on small screens */
+  border-collapse: collapse;
+  background-color: #ffffff;
+  /* Remove border-radius and overflow from table itself as container handles it */
+}
+
+thead th {
+  background-color: #fcfcfc; /* Header background color */
+  color: #5d7083; /* Header text color */
+  font-weight: 600; /* Bolder header font */
+  padding: 12px 16px; /* Consistent padding */
+  text-align: left;
+  font-size: 13px;
+  border-bottom: 1px solid #ebf0f5;
+  position: sticky; /* Make table headers sticky */
+  top: 0; /* Stick to the top of the scrollable container */
+  z-index: 1; /* Ensure headers are above scrolling content */
+}
+
+tbody td {
+  padding: 12px 16px; /* Consistent padding */
+  border-bottom: 1px solid #ebf0f5;
+  color: #4a657e;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: #fdfefe;
+}
+
+.status {
+  display: inline-flex; /* Use inline-flex for vertical alignment of text */
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 12px; /* More rounded pill shape */
+  font-size: 12px;
+  font-weight: 600; /* Bolder status text */
+  text-align: center;
+  line-height: 1; /* Ensure single line height for badge */
+}
+
+.status.cancel {
+  background-color: #fff0f0; /* Light red */
+  color: #eb5757; /* Darker red */
+}
+
+.status.complete {
+  background-color: #e0f8e9; /* Light green */
+  color: #4caf50; /* Darker green */
+}
+
+.status.pending {
+  background-color: #fffbe6; /* Light yellow */
+  color: #f2994a; /* Darker yellow/orange */
+}
+
+.download-icon {
+  color: #8c9cb1; /* Muted icon color */
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 6px; /* Increased padding for click area */
+  border-radius: 4px; /* Subtle rounding for hover */
+  display: inline-flex; /* To center icon if needed */
+  align-items: center;
+  justify-content: center;
+}
+
+.download-icon:hover {
+  color: #5d7083;
+  background-color: #f0f4f8; /* Light background on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .controls {
+    flex-direction: column; /* Stack controls vertically */
+    align-items: flex-start; /* Align to left when stacked */
+    gap: 15px;
+  }
+
+  .left-controls {
+    width: 100%; /* Take full width */
+    flex-direction: column; /* Stack sort and search */
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .sort-by-wrapper {
+    width: 100%; /* Make sort dropdown take full width */
+  }
+
+  .dropdown-button {
+    width: 100%;
+    justify-content: space-between; /* Space out text and arrow */
+  }
+
+  .dropdown-content {
+    width: 100%; /* Full width dropdown content */
+  }
+
+  .search-bar {
+    width: 100%; /* Make search bar take full width */
+    max-width: none; /* Remove max-width on smaller screens */
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header .total-records {
+    margin-top: 5px;
+  }
+
+  .table-container {
+    max-height: 300px; /* Shorter max-height for tablets/larger phones */
+  }
+
+  thead th,
+  tbody td {
+    padding: 10px; /* Slightly less padding on mobile */
+    font-size: 12px; /* Smaller font for table content */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    padding: 10px;
+  }
+  .header h1 {
+    font-size: 16px;
+  }
+  .header .total-records {
+    font-size: 12px;
+  }
+  .dropdown-button,
+  .search-bar input {
+    font-size: 13px;
+    padding: 6px 10px 6px 35px;
+  }
+  .search-bar i {
+    font-size: 13px;
+  }
+  .status {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  .table-container {
+    max-height: 250px; /* Even shorter max-height for small phones */
+  }
+}
+#homeButton {
+  background: linear-gradient(to right, #b7d1ee, #459cf8);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  padding: 6px;
+}
