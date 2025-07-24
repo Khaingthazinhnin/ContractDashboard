@@ -1,3 +1,4 @@
+/* ===== Global Reset ===== */
 * {
   margin: 0;
   padding: 0;
@@ -5,41 +6,39 @@
   font-family: "Poppins", sans-serif;
 }
 
+/* ===== Body Background ===== */
 body {
   background: linear-gradient(to bottom right, #d0eaff, #f2f8ff);
   padding: 20px;
 }
 
+/* ===== Header ===== */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
 }
-
 .logo-section {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
 .logo-section img {
   width: 40px;
 }
-
 .title {
   font-size: 24px;
   font-weight: bold;
   color: #0d47a1;
 }
-
 .user-controls {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* Menu Icon */
+/* ===== Menu Icon ===== */
 .menu-icon {
   font-size: 24px;
   cursor: pointer;
@@ -48,12 +47,50 @@ header {
   border-radius: 8px;
   transition: background-color 0.3s;
 }
-
 .menu-icon:hover {
   background-color: #6aa0fc;
 }
 
-/* Language Toggle Button */
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 220px;
+  height: 100%;
+  background: linear-gradient(to bottom right, #92bfe3, #8cc2fe);
+  color: white;
+  padding-top: 20px;
+  transition: 0.3s;
+  z-index: 1000;
+}
+.sidebar.active {
+  left: 0;
+}
+.sidebar-content {
+  padding: 10px;
+}
+.sidebar-content .close-sidebar {
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
+  text-align: right;
+  padding: 0 10px;
+}
+.sidebar-content ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar-content li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.sidebar-content li:hover {
+  background: #4e61f4;
+}
+
+/* ===== Language Toggle ===== */
 .language-toggle {
   display: flex;
   border: 1px solid #aaa;
@@ -63,22 +100,19 @@ header {
   cursor: pointer;
   font-size: 14px;
 }
-
 .language-toggle span {
   padding: 5px 10px;
   transition: background-color 0.3s, color 0.3s;
 }
-
 .language-toggle span.active {
   background-color: #007bff;
   color: white;
 }
-
 .language-toggle span:not(.active):hover {
   background-color: #6aa0fc;
 }
 
-/* User Menu */
+/* ===== User Menu ===== */
 .user-menu {
   display: flex;
   align-items: center;
@@ -87,63 +121,42 @@ header {
   border-radius: 20px;
   transition: background-color 0.3s;
 }
-
 .user-menu:hover {
   background-color: #6aa0fc;
 }
-
 .user-menu img {
   border-radius: 50%;
   background-color: #ddd;
   padding: 4px;
 }
 
-/* for mobile and pc friendly*/
+/* ===== Card Grid ===== */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(160px, 1fr)
-  ); /* 160px min for responsive */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
   margin-top: 40px;
-  padding: 0 10px; /* Mobile တွေအတွက် padding */
+  padding: 0 10px;
 }
 
-/* Mobile မှာ 1 Column */
+/* ===== Responsive Card Layout ===== */
 @media (max-width: 480px) {
   .card-grid {
-    grid-template-columns:  repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* Tablet မှာ 2 Column */
 @media (min-width: 481px) and (max-width: 768px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* Desktop မှာ 3 Column */
 @media (min-width: 769px) {
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* Card content တွေအတွက် mobile friendly */
-.card {
-  padding: 15px;
-}
-
-.card h2 {
-  font-size: 16px;
-}
-
-.card span {
-  font-size: 13px;
-}
-
+/* ===== Card Styles ===== */
 .card {
   background: linear-gradient(135deg, #96f6f4, #d1fdff);
   border-radius: 16px;
@@ -154,58 +167,48 @@ header {
   cursor: pointer;
   animation: fadeIn 0.5s ease forwards;
 }
-.card-draw {
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb); /* Light Blue */
-}
-
-.card-upload {
-  background: linear-gradient(135deg, #fbc2eb, #a6c1ee); /* Pink-Purple */
-}
-
-.card-check {
-  background: linear-gradient(135deg, #d4fc79, #96e6a1); /* Green */
-}
-
-.card-history {
-  background: linear-gradient(135deg, #fddb92, #d1fdff); /* Yellow-Pink */
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(4, 26, 135, 0.15);
-}
-.card-draw:hover {
-  background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
-}
-
-.card-upload:hover {
-  background: linear-gradient(135deg, #ffecd2, #fcb69f);
-}
-
-.card-check:hover {
-  background: linear-gradient(135deg, #a1ffce, #faffd1);
-}
-
-.card-history:hover {
-  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-}
-
 .card h2 {
   font-size: 18px;
   margin-top: 10px;
   font-weight: 600;
   color: #333;
 }
-
 .card span {
   font-size: 14px;
   color: #777;
 }
-
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(4, 26, 135, 0.15);
+}
+.card-draw {
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+}
+.card-upload {
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+}
+.card-check {
+  background: linear-gradient(135deg, #d4fc79, #96e6a1);
+}
+.card-history {
+  background: linear-gradient(135deg, #fddb92, #d1fdff);
+}
+.card-draw:hover {
+  background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+}
+.card-upload:hover {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+}
+.card-check:hover {
+  background: linear-gradient(135deg, #a1ffce, #faffd1);
+}
+.card-history:hover {
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+}
 .draw-icon {
   font-size: 32px;
 }
-
+/* ===== Fade-in Keyframe ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -217,22 +220,68 @@ header {
   }
 }
 
-/* Modal Overlay drawing pad */
+/* ===== Modal Box General ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 300px;
+  width: 80%;
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.close:hover {
+  color: #333;
+}
+/*====profile===*/
+.upload-btn {
+  padding: 10px 20px;
+  background: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 5px;
+}
+
+.upload-btn:hover {
+  background: #1565c0;
+}
+
+.file-input-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+/* ===== Drawing Pad Modal ===== */
 .draw-pad-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* semi-transparent */
-  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 999;
-  display: none; /* default hidden */
 }
-
-/* Modal Content */
 .draw-pad-content {
   position: relative;
   background: white;
@@ -243,14 +292,12 @@ header {
   flex-direction: column;
   align-items: center;
 }
-
 .draw-pad-content canvas {
   border: 1px solid #ccc;
   background: #fff;
   cursor: crosshair;
   border-radius: 8px;
 }
-
 .draw-pad-content button {
   margin: 10px 5px 0 5px;
   padding: 8px 16px;
@@ -260,9 +307,14 @@ header {
   color: white;
   cursor: pointer;
 }
-
 .draw-pad-content button:hover {
   background-color: #0056b3;
+}
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 .close-icon {
   position: absolute;
@@ -273,17 +325,11 @@ header {
   user-select: none;
   color: #555;
 }
-
 .close-icon:hover {
   color: red;
 }
 
-.button-row {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-}
+/* ===== Signature Preview Card ===== */
 .signature-card {
   max-width: 300px;
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
@@ -293,18 +339,15 @@ header {
   text-align: center;
   margin: 20px auto;
 }
-
 .signature-card h2 {
   font-size: 20px;
   margin-bottom: 10px;
   color: #0d47a1;
 }
-
 .signature-card p {
   font-size: 14px;
   margin-bottom: 10px;
 }
-
 .signature-card img {
   width: 100%;
   border-radius: 8px;
