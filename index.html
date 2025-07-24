@@ -11,27 +11,96 @@
       <div class="logo-section">
         <div class="menu-icon" id="menuIcon">☰</div>
         <img src="logo.jpg" alt="logo" />
-        <div class="title">Digital</div>
+        <div class="title">Accorda</div>
       </div>
-
       <div class="user-controls">
         <div class="language-toggle" id="langToggle">
           <span id="lang-en" class="active">Eng</span>
           <span id="lang-myan">Myan</span>
         </div>
-        <div class="user-menu">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-            alt="user"
-            width="30"
-          />
-          <span>user</span>
-        </div>
       </div>
     </header>
 
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <span class="close-sidebar" id="closeSidebar">&times;</span>
+        <ul>
+          <li id="menuProfile">Profile</li>
+          <li id="menuEmail">Email</li>
+          <li id="menuIdShare">ID Share</li>
+          <li id="menuSettings">Settings</li>
+          <li id="menuLogout">Log out</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeProfile">&times;</span>
+        <h2>Profile</h2>
+        <img
+          id="profileImage"
+          src="default-profile.png"
+          style="
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #00008b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+
+            margin: 20px auto;
+            background-color: #ffffff;
+          "
+        />
+
+        <!-- Camera input -->
+        <input
+          type="file"
+          accept="image/*"
+          capture="environment"
+          id="cameraInput"
+          style="display: none"
+          class="file-input-hidden"
+        />
+        <!-- Gallery input -->
+        <input
+          type="file"
+          accept="image/*"
+          id="galleryInput"
+          style="display: none"
+          class="file-input-hidden"
+        />
+
+        <button id="openCamera" class="upload-btn">📷 Take Photo</button>
+        <button id="openGallery" class="upload-btn">
+          🖼 Choose from Gallery
+        </button>
+      </div>
+    </div>
+    <!-- Other Modals like ID Share and Settings -->
+    <div id="idShareModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeIdShare">&times;</span>
+        <h2>Your ID</h2>
+        <p id="userIdDisplay">ID: 26</p>
+      </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeSettings">&times;</span>
+        <h2>Settings</h2>
+        <p>Here will be your settings controls...</p>
+      </div>
+    </div>
+
     <section class="card-grid">
-      <div class="card card-draw" onclick="drawSign()">
+      <div class="card card-draw" id="drawSignCard" onclick="drawSign()">
         <div class="draw-icon">✍️</div>
         <h2 data-key="drawSign">Draw Sign</h2>
         <span data-key="createSignature">Create your signature</span>
@@ -46,17 +115,22 @@
         <h2 data-key="checkContract">Check Contract</h2>
         <span data-key="contractsWaiting">Contracts waiting to sign</span>
       </div>
-      <div class="card card-history" onclick="viewHistory()">
+      <div
+        class="card card-history"
+        id="viewHistoryCard"
+        onclick="viewHistory()"
+      >
         <div class="draw-icon">📜</div>
         <h2 data-key="viewHistory">View History</h2>
         <span data-key="allRecords">All signed records</span>
       </div>
     </section>
+
     <!-- Drawing Pad Modal -->
     <div id="drawPadModal" class="draw-pad-modal">
       <div class="draw-pad-content">
-        <span class="close-icon" id="closePadX">&times;</span
-        ><!-- X Button-->
+        <span class="close-icon" id="closePadX">&times;</span>
+        <!-- X Button-->
         <canvas id="drawCanvas" width="400" height="300"></canvas>
         <div class="button-row">
           <button id="clearCanvasBtn">Clear</button>
@@ -66,7 +140,7 @@
     </div>
     <section id="signaturePreviewSection" style="display: none">
       <div class="signature-card">
-        <h2>Your Signature</h2>
+        <h2 data-key="yourSignature">Your Signature</h2>
         <p id="userNameDisplay">Name: Yin Myo Htet</p>
         <img id="signatureImage" src="" alt="Your Signature" />
       </div>
