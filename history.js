@@ -183,5 +183,5 @@ document.addEventListener("DOMContentLoaded", () => {
   applyFiltersAndSearch();
 });
 document.getElementById("homeButton").addEventListener("click", function () {
-  window.location.href = "1page.html";
+  window.location.href = "index.html";
 });
