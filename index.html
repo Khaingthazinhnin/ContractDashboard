@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Digital Dashboard</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -57,6 +61,9 @@
             background-color: #ffffff;
           "
         />
+        <p id="profileNameDisplay" style="margin-top: 8px; font-weight: bold">
+          Name
+        </p>
 
         <!-- Camera input -->
         <input
@@ -75,11 +82,10 @@
           style="display: none"
           class="file-input-hidden"
         />
-
-        <button id="openCamera" class="upload-btn">📷 Take Photo</button>
-        <button id="openGallery" class="upload-btn">
-          🖼 Choose from Gallery
-        </button>
+        <div class="button-row">
+          <button id="openCamera" class="upload-btn">Take Photo</button>
+          <button id="openGallery" class="upload-btn">Choose Photo</button>
+        </div>
       </div>
     </div>
     <!-- Other Modals like ID Share and Settings -->
@@ -100,21 +106,36 @@
     </div>
 
     <section class="card-grid">
+      <!-- ✍️ Draw Sign Card -->
       <div class="card card-draw" id="drawSignCard" onclick="drawSign()">
         <div class="draw-icon">✍️</div>
         <h2 data-key="drawSign">Draw Sign</h2>
         <span data-key="createSignature">Create your signature</span>
       </div>
-      <div class="card card-upload" onclick="uploadFile()">
+
+      <!-- 📤 Upload File Card -->
+      <div
+        class="card card-upload"
+        id="uploadFileCard"
+        onclick="openUploadModal()"
+      >
         <div class="draw-icon">📤</div>
         <h2 data-key="uploadFile">Upload File</h2>
         <span data-key="uploadPdf">Upload contract PDF</span>
       </div>
-      <div class="card card-check" onclick="checkContract()">
+
+      <!-- 📄 Check Contract Card -->
+      <div
+        class="card card-check"
+        id="checkContractCard"
+        onclick="checkContract()"
+      >
         <div class="draw-icon">📄</div>
         <h2 data-key="checkContract">Check Contract</h2>
         <span data-key="contractsWaiting">Contracts waiting to sign</span>
       </div>
+
+      <!-- 📜 View History Card -->
       <div
         class="card card-history"
         id="viewHistoryCard"
@@ -145,6 +166,22 @@
         <img id="signatureImage" src="" alt="Your Signature" />
       </div>
     </section>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="upload-modal">
+      <div class="upload-modal-content">
+        <span class="close-upload" id="closeUpload">&times;</span>
+        <h2>Upload Contract PDF</h2>
+        <p>Please select your contract PDF file to upload.</p>
+        <input
+          type="file"
+          id="uploadInput"
+          accept="application/pdf"
+          class="file-input-hidden"
+        />
+        <button id="uploadButton">Upload PDF</button>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
