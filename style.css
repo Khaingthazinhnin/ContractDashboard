@@ -28,7 +28,9 @@ header {
   width: 40px;
 }
 .title {
-  font-size: 24px;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1px;
+  font-size: 32px;
   font-weight: bold;
   color: #0d47a1;
 }
@@ -71,6 +73,7 @@ header {
   padding: 10px;
 }
 .sidebar-content .close-sidebar {
+  font-family: "Poppins", sans-serif;
   font-size: 24px;
   cursor: pointer;
   display: block;
@@ -142,12 +145,12 @@ header {
 /* ===== Responsive Card Layout ===== */
 @media (max-width: 480px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 @media (min-width: 769px) {
@@ -268,7 +271,84 @@ header {
   position: absolute;
   left: -9999px;
 }
+/* Upload Modal Base */
+.upload-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%; /* page တစ်ဝက် */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+  padding: 20px;
+}
 
+.upload-modal-content {
+  text-align: center;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.upload-modal-content h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #1565c0;
+}
+
+.upload-modal-content p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.upload-modal-content input[type="file"] {
+  margin-bottom: 15px;
+}
+
+.upload-modal-content button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.upload-modal-content button:hover {
+  background: #0056b3;
+}
+
+.close-upload {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 /* ===== Drawing Pad Modal ===== */
 .draw-pad-modal {
   position: fixed;
