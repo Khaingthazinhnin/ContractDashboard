@@ -53,19 +53,60 @@ canvas.addEventListener("touchend", () => {
   drawing = false;
 });
 
-// ✅ Clear Pad
-document.getElementById("clearCanvasBtn").addEventListener("click", () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+// Open Upload Modal
+function openUploadModal() {
+  document.getElementById("uploadModal").style.display = "flex";
+}
+
+// Close Modal
+document.getElementById("closeUpload").addEventListener("click", () => {
+  document.getElementById("uploadModal").style.display = "none";
 });
 
+// Upload PDF Logic
+const uploadInput = document.getElementById("uploadInput");
+const uploadButton = document.getElementById("uploadButton");
+
+uploadButton.addEventListener("click", () => {
+  uploadInput.value = ""; // clear old
+  uploadInput.click(); // open file picker
+});
+
+uploadInput.addEventListener("change", () => {
+  const file = uploadInput.files[0];
+  if (file && file.type === "application/pdf") {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const base64PDF = e.target.result;
+      localStorage.setItem("uploadedPDF", base64PDF);
+      window.location.href = "upload.html";
+    };
+    reader.readAsDataURL(file);
+  } else {
+    alert("❌ Please select a valid PDF file.");
+  }
+});
+
+function isCanvasBlank(canvas) {
+  const blank = document.createElement("canvas");
+  blank.width = canvas.width;
+  blank.height = canvas.height;
+  return canvas.toDataURL() === blank.toDataURL();
+}
 // ✅ Close Pad
 document.getElementById("closePadX").addEventListener("click", () => {
   document.getElementById("drawPadModal").style.display = "none";
 });
-
+document.getElementById("clearCanvasBtn").addEventListener("click", () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
 // ✅ Save Pad
 let hasUserSigned = false;
 document.getElementById("savePadBtn").addEventListener("click", () => {
+  if (isCanvasBlank(canvas)) {
+    alert("✍️ Please draw your signature before saving.");
+    return; // Save လုပ်တာကို ပိတ်ထားမယ်
+  }
   const dataURL = canvas.toDataURL("image/png");
   document.getElementById("userNameDisplay").textContent = "Name: user";
   const signatureImg = document.getElementById("signatureImage");
@@ -140,11 +181,13 @@ document.getElementById("closeSidebar").addEventListener("click", () => {
 //for profile
 document.getElementById("menuProfile").addEventListener("click", () => {
   document.getElementById("profileModal").style.display = "flex";
+  document.getElementById("sidebar").classList.remove("active");
 });
 
 // Close profile modal
 document.getElementById("closeProfile").addEventListener("click", () => {
   document.getElementById("profileModal").style.display = "none";
+  document.getElementById("sidebar").classList.remove("active");
 });
 const developerMode = true; // ✅ Developer testing = true, User mode = false
 
@@ -191,6 +234,25 @@ cameraInput.addEventListener("change", function (event) {
     };
     reader.readAsDataURL(file);
   }
+  const profileNameDisplay = document.getElementById("profileNameDisplay");
+
+  if (developerMode) {
+    // ✅ Developer Mode: Always show test user
+    profileNameDisplay.textContent = "Name: Developer Test User";
+  } else {
+    // ✅ User Mode
+    let profileName = localStorage.getItem("profileName");
+    if (!profileName) {
+      // ပထမတစ်ခါတင်တဲ့အချိန် Prompt ဖြင့်နာမည်ထည့်ခိုင်း
+      profileName = prompt("Please enter your name:");
+      if (profileName) {
+        localStorage.setItem("profileName", profileName);
+      } else {
+        profileName = "Anonymous User";
+      }
+    }
+    profileNameDisplay.textContent = `Name: ${profileName}`;
+  }
 });
 
 // ✅ Gallery Input Handler
@@ -212,6 +274,7 @@ document.getElementById("menuIdShare").addEventListener("click", () => {
 });
 document.getElementById("closeIdShare").addEventListener("click", () => {
   document.getElementById("idShareModal").style.display = "none";
+  document.getElementById("sidebar").classList.remove("active");
 });
 document.getElementById("menuSettings").addEventListener("click", () => {
   document.getElementById("settingsModal").style.display = "flex";
@@ -219,6 +282,7 @@ document.getElementById("menuSettings").addEventListener("click", () => {
 });
 document.getElementById("closeSettings").addEventListener("click", () => {
   document.getElementById("settingsModal").style.display = "none";
+  document.getElementById("sidebar").classList.remove("active");
 });
 document.getElementById("menuLogout").addEventListener("click", () => {
   const confirmLogout = confirm("Are you sure you want to log out?");
